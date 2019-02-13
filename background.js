@@ -1,4 +1,4 @@
-console.log("STARTING backgorund.js....");
+//console.log("start AugmentTrello !");
 
 //hardcoded indices of the Trello board lists
 //assumes a board with specific named lists
@@ -104,7 +104,7 @@ function unhighlightAllButtons(){
 
 function highlightButton(sel){
     unhighlightAllButtons();
-    console.log("highlight button...", sel);
+    //console.log("highlight button...", sel);
     $(sel).css('opacity',1);
 }
 
