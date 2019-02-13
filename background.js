@@ -13,17 +13,33 @@ var iDONE=1,
 
 //default mode is day
 var mode="day";
-
-
+var tm = Date.now();
+var timeSinceMouseMove = 0;
 
 
 $(function() {
 	createButtons(); 
     hideHeader();
     updateListLayout();
+
+    //keep things updated...
+    setInterval(regularUpdate, 500);
+    document.addEventListener("keyup", function(e) {
+        if(e.keyCode==13) tm = Date.now();
+    });
 });
 
 
+function regularUpdate(){
+    timeSinceMouseMove = Date.now()-tm;
+    //console.log("calling regularUpdate.. timeSinceMouseMove=",timeSinceMouseMove); 
+    if(timeSinceMouseMove<1000){
+        updateListLayout();
+        if($('.btn_pomo').length==0){
+            createButtons();
+        } 
+    } 
+}
 
 
 
