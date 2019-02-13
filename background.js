@@ -31,27 +31,27 @@ function createButtons(){
         //console.log("ADDING BUTTONS....");  
         var div = $($('.board-header > .board-header-btns.mod-left')[1]);
 
-        div.append('<div class="b123 board-header-btn-round" href="#">POMO</div>');
-        addButtonStyle('.b123');
-        $('.b123').click(function() {
+        div.append('<div class="btn_pomo board-header-btn-round" href="#">POMO</div>');
+        addButtonStyle('.btn_pomo');
+        $('.btn_pomo').click(function() {
             setMode("pomo");
         });
  
-        div.append('<div class="b124 board-header-btn-round" href="#">DAY</div>');
-        addButtonStyle('.b124');
-        $('.b124').click(function() {
+        div.append('<div class="btn_day board-header-btn-round" href="#">DAY</div>');
+        addButtonStyle('.btn_day');
+        $('.btn_day').click(function() {
             setMode("day");
         });
 
-        div.append('<div class="b125 board-header-btn-round" href="#">PLANNER</div>');
-        addButtonStyle('.b125');
-        $('.b125').click(function() {
+        div.append('<div class="btn_planner board-header-btn-round" href="#">PLANNER</div>');
+        addButtonStyle('.btn_planner');
+        $('.btn_planner').click(function() {
             setMode("planner");
         });
 
-        div.append('<div class="b126 board-header-btn-round" href="#">NORMAL</div>');
-        addButtonStyle('.b126');
-        $('.b126').click(function() {
+        div.append('<div class="btn_normal board-header-btn-round" href="#">NORMAL</div>');
+        addButtonStyle('.btn_normal');
+        $('.btn_normal').click(function() {
             setMode("normal");
         });
         
@@ -68,6 +68,28 @@ function addButtonStyle(strSel){
         .css('cursor','pointer');
 }
 
+
+
+function unhighlightAllButtons(){
+    var grey = 0.3;
+    $('.btn_pomo').css('opacity',grey);
+    $('.btn_day').css('opacity',grey);
+    $('.btn_planner').css('opacity',grey);
+    $('.btn_normal').css('opacity',grey);    
+}
+
+function highlightButton(sel){
+    unhighlightAllButtons();
+    console.log("highlight button...", sel);
+    $(sel).css('opacity',1);
+}
+
+
+
+
+
+
+
 function setMode(strMode){
     mode = strMode;
     updateListLayout();
@@ -76,6 +98,8 @@ function setMode(strMode){
 
 
 function updateListLayout() {
+
+    highlightButton(".btn_"+mode);
 
     //console.log("updateListLayout");
     //reset everything first...
