@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "Augment trello",
+  "version": "5.0",
+  "description": "Manipulate Trello lists",
+  "browser_action": {
+    "name": "Augment trello",
+    "icons": ["icon.png"],
+    "default_icon": "icon.png"
+  },
+  "content_scripts": [ {
+    "js": [ "jquery.min.js", "background.js" ],
+    "matches": [ "http://trello.com/*", "https://trello.com/*"]
+  }]
+}
