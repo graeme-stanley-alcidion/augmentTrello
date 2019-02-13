@@ -70,6 +70,12 @@ function createButtons(){
         $('.btn_normal').click(function() {
             setMode("normal");
         });
+
+        div.append('<div class="btn_done board-header-btn-round" href="#">DONE</div>');
+        addButtonStyle('.btn_done');
+        $('.btn_done').click(function() {
+            setMode("done");
+        });
         
 }
 
@@ -92,6 +98,8 @@ function unhighlightAllButtons(){
     $('.btn_day').css('opacity',grey);
     $('.btn_planner').css('opacity',grey);
     $('.btn_normal').css('opacity',grey);    
+    $('.btn_done').css('opacity',grey);    
+    
 }
 
 function highlightButton(sel){
@@ -99,10 +107,6 @@ function highlightButton(sel){
     console.log("highlight button...", sel);
     $(sel).css('opacity',1);
 }
-
-
-
-
 
 
 
@@ -152,6 +156,11 @@ function updateListLayout() {
         //hide 'add list'
         $('.js-add-list').hide();
         decorateLists();
+    } else if (mode == "done") {
+        hideAllLists();
+        setListOpacity(iDONE, 1);
+        //hide 'add list'
+        $('.js-add-list').hide();
     }
 
 }
