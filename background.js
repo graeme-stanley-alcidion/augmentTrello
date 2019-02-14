@@ -18,7 +18,8 @@ var timeSinceMouseMove = 0;
 
 
 $(function() {
-	createButtons(); 
+    createButtons();
+    createZendeskLauncher(); 
     hideHeader();
     updateListLayout();
 
@@ -38,65 +39,92 @@ function regularUpdate(){
         if($('.btn_pomo').length==0){
             createButtons();
         } 
+
+        if($('#zid_div').length==0){
+            createZendeskLauncher();
+        } 
+
+        
     } 
 }
 
 
 function processActivityFeed(d){
     for(i=0;i<d.length;i++){
-        if(d[i].display.translationKey=="action_move_card_from_list_to_list" && d[i].display.entities.listAfter.text=="DONE"){
-            //console.log("translationKey",d[i].display.translationKey);
+        //if(d[i].display.translationKey=="action_move_card_from_list_to_list" && d[i].display.entities.listAfter.text=="DONE"){
+            console.log("["+i+"]  >> date",d[i].date);
+            console.log("translationKey",d[i].display.translationKey);
             //console.log("before",d[i].display.entities.listBefore.text)
             //console.log("after",d[i].display.entities.listAfter.text)
-            console.log("card '"+ d[i].display.entities.card.text +"' moved to DONE");
-        }
+            //console.log("card '"+ d[i].display.entities.card.text +"' moved to DONE");
+        //}
     }
 }
 
 
-function createButtons(){
-        //console.log("ADDING BUTTONS....");  
-        var div = $($('.board-header > .board-header-btns.mod-left')[1]);
 
-        div.append('<div class="btn_pomo board-header-btn-round" href="#">POMO</div>');
-        addButtonStyle('.btn_pomo');
-        $('.btn_pomo').click(function() {
-            setMode("pomo");
-        });
- 
-        div.append('<div class="btn_day board-header-btn-round" href="#">DAY</div>');
-        addButtonStyle('.btn_day');
-        $('.btn_day').click(function() {
-            setMode("day");
-        });
-
-        div.append('<div class="btn_planner board-header-btn-round" href="#">PLANNER</div>');
-        addButtonStyle('.btn_planner');
-        $('.btn_planner').click(function() {
-            setMode("planner");
-        });
-
-        div.append('<div class="btn_normal board-header-btn-round" href="#">NORMAL</div>');
-        addButtonStyle('.btn_normal');
-        $('.btn_normal').click(function() {
-            setMode("normal");
-        });
-
-        div.append('<div class="btn_done board-header-btn-round" href="#">DONE</div>');
-        addButtonStyle('.btn_done');
-        $('.btn_done').click(function() {
-            setMode("done");
-        });
-
-        $('#surface').append('<div id="zid_div"><input value="" id="zid" style="width:58px"></div>');
-        $('#zid_div').css('position','absolute').css("left","18px").css("bottom","10px").keypress(function(e) {
-            if(e.which==13){
-                //alert( "Handler for .keyup() called." + $('#zid').val());
-                window.open("https://alcidion.zendesk.com/agent/tickets/"+$('#zid').val(), "_blank");
-            }
-        });
-        
+function viewFeed(d){
+    for(i=0;i<d.length;i++){
+        //if(d[i].display.translationKey=="action_move_card_from_list_to_list" && d[i].display.entities.listAfter.text=="DONE"){
+            console.log("["+i+"]  >> date",d[i].date);
+            console.log("translationKey",d[i].display.translationKey);
+            //console.log("before",d[i].display.entities.listBefore.text)
+            //console.log("after",d[i].display.entities.listAfter.text)
+            //console.log("card '"+ d[i].display.entities.card.text +"' moved to DONE");
+            console.log(d[i]);
+        //}
+    }
 }
+
+
+
+
+
+function createButtons(){
+    //console.log("ADDING BUTTONS....");  
+    var div = $($('.board-header > .board-header-btns.mod-left')[1]);
+
+    div.append('<div class="btn_pomo board-header-btn-round" href="#">POMO</div>');
+    addButtonStyle('.btn_pomo');
+    $('.btn_pomo').click(function() {
+        setMode("pomo");
+    });
+
+    div.append('<div class="btn_day board-header-btn-round" href="#">DAY</div>');
+    addButtonStyle('.btn_day');
+    $('.btn_day').click(function() {
+        setMode("day");
+    });
+
+    div.append('<div class="btn_planner board-header-btn-round" href="#">PLANNER</div>');
+    addButtonStyle('.btn_planner');
+    $('.btn_planner').click(function() {
+        setMode("planner");
+    });
+
+    div.append('<div class="btn_normal board-header-btn-round" href="#">NORMAL</div>');
+    addButtonStyle('.btn_normal');
+    $('.btn_normal').click(function() {
+        setMode("normal");
+    });
+
+    div.append('<div class="btn_done board-header-btn-round" href="#">DONE</div>');
+    addButtonStyle('.btn_done');
+    $('.btn_done').click(function() {
+        setMode("done");
+    });
+}
+
+function createZendeskLauncher(){
+    $('#surface').append('<div id="zid_div"><input value="" id="zid" style="width:58px"></div>');
+    $('#zid_div').css('position','absolute').css("left","18px").css("bottom","10px").keypress(function(e) {
+        if(e.which==13){
+            //alert( "Handler for .keyup() called." + $('#zid').val());
+            window.open("https://alcidion.zendesk.com/agent/tickets/"+$('#zid').val(), "_blank");
+        }
+    });   
+}
+
 
 function addButtonStyle(strSel){
     $(strSel)
