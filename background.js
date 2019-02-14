@@ -42,6 +42,17 @@ function regularUpdate(){
 }
 
 
+function processActivityFeed(d){
+    for(i=0;i<d.length;i++){
+        if(d[i].display.translationKey=="action_move_card_from_list_to_list" && d[i].display.entities.listAfter.text=="DONE"){
+            //console.log("translationKey",d[i].display.translationKey);
+            //console.log("before",d[i].display.entities.listBefore.text)
+            //console.log("after",d[i].display.entities.listAfter.text)
+            console.log("card '"+ d[i].display.entities.card.text +"' moved to DONE");
+        }
+    }
+}
+
 
 function createButtons(){
         //console.log("ADDING BUTTONS....");  
