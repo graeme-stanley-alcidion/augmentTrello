@@ -149,10 +149,11 @@ function updateListLayout() {
 
     } else if (mode == "planner") {
         setListOpacity(iDONE, 0);
-        setListOpacity(iLATER, 0);
+
+        setListOpacity(iLATER, 1);
+        setListOpacity(iPOMO, 0);
         setListOpacity(iNEXT_WEEK, 1);
         hideAndHighlightWeekdays(true);
-        setListOpacity(iPOMO, 0.8);
         //hide 'add list'
         $('.js-add-list').hide();
         decorateLists();
