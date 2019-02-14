@@ -76,6 +76,14 @@ function createButtons(){
         $('.btn_done').click(function() {
             setMode("done");
         });
+
+        $('#surface').append('<div id="zid_div"><input value="" id="zid" style="width:58px"></div>');
+        $('#zid_div').css('position','absolute').css("left","18px").css("bottom","10px").keypress(function(e) {
+            if(e.which==13){
+                //alert( "Handler for .keyup() called." + $('#zid').val());
+                window.open("https://alcidion.zendesk.com/agent/tickets/"+$('#zid').val(), "_blank");
+            }
+        });
         
 }
 
@@ -151,7 +159,7 @@ function updateListLayout() {
         setListOpacity(iDONE, 0);
 
         setListOpacity(iLATER, 1);
-        setListOpacity(iPOMO, 0);
+        setListOpacity(iPOMO, 1);
         setListOpacity(iNEXT_WEEK, 1);
         hideAndHighlightWeekdays(true);
         //hide 'add list'
