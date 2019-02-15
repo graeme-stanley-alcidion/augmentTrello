@@ -102,13 +102,21 @@ function createButtons(){
         setMode("planner");
     });
 
-    div.append('<div class="btn_normal board-header-btn-round" href="#">NORMAL</div>');
+
+    div.append('<div class="btn_week board-header-btn-round" href="#">ALL WEEK</div>');
+    addButtonStyle('.btn_week');
+    $('.btn_week').click(function() {
+        setMode("week");
+    });
+
+
+    div.append('<div class="btn_normal board-header-btn-round" href="#">ALL + MENU</div>');
     addButtonStyle('.btn_normal');
     $('.btn_normal').click(function() {
         setMode("normal");
     });
 
-    div.append('<div class="btn_done board-header-btn-round" href="#">DONE</div>');
+    div.append('<div class="btn_done board-header-btn-round" href="#" color="#00cc00">DONE</div>');
     addButtonStyle('.btn_done');
     $('.btn_done').click(function() {
         setMode("done");
@@ -146,6 +154,7 @@ function unhighlightAllButtons(){
     $('.btn_planner').css('opacity',grey);
     $('.btn_normal').css('opacity',grey);    
     $('.btn_done').css('opacity',grey);    
+    $('.btn_week').css('opacity',grey);    
     
 }
 
@@ -170,7 +179,7 @@ function updateListLayout() {
 
     //console.log("updateListLayout");
     //reset everything first...
-    $('#classic').css('zoom',1);
+    $('#classic-body').css('zoom',1);
     hideHeader();
     showAllLists();
 
@@ -192,7 +201,7 @@ function updateListLayout() {
         setListOpacity(iPOMO, 1);
         decorateLists();
         //make bigger!
-        //$('#classic').css('zoom',1.2);
+        $('#classic-body').css('zoom',1.35);
 
     } else if (mode == "planner") {
         setListOpacity(iDONE, 0);
@@ -204,6 +213,18 @@ function updateListLayout() {
         //hide 'add list'
         $('.js-add-list').hide();
         decorateLists();
+    } else if (mode == "week") {
+        
+        setListOpacity(iDONE, 0);
+        setListOpacity(iLATER, 1);
+        setListOpacity(iPOMO, 1);
+        setListOpacity(iNEXT_WEEK, 1);
+        //hide 'add list'
+        $('.js-add-list').hide();
+        decorateLists();
+        //make bigger!
+        $('#classic-body').css('zoom',0.7);
+
     } else if (mode == "done") {
         hideAllLists();
         setListOpacity(iDONE, 1);
