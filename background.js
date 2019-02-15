@@ -200,8 +200,6 @@ function updateListLayout() {
         hideAllLists();
         setListOpacity(iPOMO, 1);
         decorateLists();
-        //make bigger!
-        $('#classic-body').css('zoom',1.35);
 
     } else if (mode == "planner") {
         setListOpacity(iDONE, 0);
