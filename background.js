@@ -359,3 +359,46 @@ function setListOpacity(idx, opacity) {
 }
 
 
+
+
+
+
+
+function getPomoActivitySummary(){
+    var url  = 'https://trello.com/1/lists/5c5db88c46c11502b0ff5ec4/actions?fields=data,type,date&limit=55&memberCreator=false'
+    var data, name;
+    var dt1, dt2, diff = -1;
+
+
+    $.getJSON( url, function( rows ) {
+        for(var i=0;i<rows.length;i++){
+            
+            diff=-1;
+            try{
+                data = rows[i].data;
+                name = data.card.name;
+
+                if(i>0){
+                    dt1=new Date(rows[i-1].date);
+                    dt2=new Date(rows[i].date);
+                    diff=dt1-dt2;
+                }
+            } catch (e){
+                name="??"
+            }
+            
+            if(diff>5000){
+                console.log(i, "dt: ", dt2, " name", name, " diff:", diff);
+            }
+            
+            
+            
+
+        }
+    });
+
+}
+
+
+
+
