@@ -6,8 +6,9 @@ var iDONE=1,
     iPOMO=2, 
     iNEXT=3
     iMON=4, iTUE=5, iWED=6, iTHU=7, iFRI=8,
-    iNEXT_WEEK=9, 
-    iLATER=10;
+    iSOON=9, 
+    iLATER=10,
+    iMAYBE=11;
 
 
 
@@ -23,6 +24,9 @@ $(function() {
     hideHeader();
     updateListLayout();
 
+    hideOthers();
+
+
     //keep things updated...
     setInterval(regularUpdate, 500);
     document.addEventListener("keyup", function(e) {
@@ -30,6 +34,13 @@ $(function() {
     });
 });
 
+
+function hideOthers(){
+    $("<style type='text/css'> .add-comment-section{ display: none;} </style>").appendTo("head");
+    $("<style type='text/css'> .add-comment-section + div{ display: none;} </style>").appendTo("head");
+   
+    //mod-card-detail-icons-smaller
+}
 
 function regularUpdate(){
     timeSinceMouseMove = Date.now()-tm;
@@ -189,7 +200,8 @@ function updateListLayout() {
     } else if (mode == "day") {
         setListOpacity(iDONE, 0.2);
         setListOpacity(iLATER, 0);
-        setListOpacity(iNEXT_WEEK, 0);
+        setListOpacity(iMAYBE, 0);
+        setListOpacity(iSOON, 0);
         hideAndHighlightWeekdays(false);
         setListOpacity(iPOMO, 1);
         //hide 'add list'
@@ -203,10 +215,10 @@ function updateListLayout() {
 
     } else if (mode == "planner") {
         setListOpacity(iDONE, 0);
-
+        setListOpacity(iMAYBE, 1);
         setListOpacity(iLATER, 1);
         setListOpacity(iPOMO, 1);
-        setListOpacity(iNEXT_WEEK, 1);
+        setListOpacity(iSOON, 1);
         hideAndHighlightWeekdays(true);
         //hide 'add list'
         $('.js-add-list').hide();
@@ -216,7 +228,8 @@ function updateListLayout() {
         setListOpacity(iDONE, 0);
         setListOpacity(iLATER, 1);
         setListOpacity(iPOMO, 1);
-        setListOpacity(iNEXT_WEEK, 1);
+        setListOpacity(iSOON, 1);
+        setListOpacity(iMAYBE, 0);
         //hide 'add list'
         $('.js-add-list').hide();
         decorateLists();
@@ -334,6 +347,10 @@ function hideHeader() {
 
     //hide share buitton
     $('div.board-header-btns > a.js-open-manage-board-members').hide();
+    
+    
+
+
 
 }
 
