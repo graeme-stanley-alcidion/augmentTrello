@@ -59,7 +59,7 @@ function regularUpdate(){
     } 
 }
 
-
+/*
 function processActivityFeed(d){
     for(i=0;i<d.length;i++){
         //if(d[i].display.translationKey=="action_move_card_from_list_to_list" && d[i].display.entities.listAfter.text=="DONE"){
@@ -86,7 +86,7 @@ function viewFeed(d){
         //}
     }
 }
-
+*/
 
 
 
@@ -375,14 +375,7 @@ function setListOpacity(idx, opacity) {
     }
 }
 
-
-
-
-//gts
-//gts2
-
-
-
+/*
 function getPomoActivitySummary(){
     var url  = 'https://trello.com/1/lists/5c5db88c46c11502b0ff5ec4/actions?fields=data,type,date&limit=55&memberCreator=false'
     var data, name;
@@ -417,6 +410,7 @@ function getPomoActivitySummary(){
     });
 
 }
+*/
 
 
 
